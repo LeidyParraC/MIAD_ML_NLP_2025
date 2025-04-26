@@ -6,14 +6,10 @@
 
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.preprocessing import OneHotEncoder
-from sklearn.ensemble import AdaBoostRegressor
-from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import cross_val_score, train_test_split
-from sklearn.datasets import make_regression
 from sklearn.linear_model import LinearRegression
 import joblib
 
@@ -181,7 +177,7 @@ from flask import Flask
 from flask_restx import Api, Resource, fields
 
 
-# In[ ]:
+# In[117]:
 
 
 from flask import Flask, request, render_template_string
@@ -338,18 +334,4 @@ def predict_form():
 # Ejecutar la app
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=False)
-
-
-# In[ ]:
-
-
-# y_test_pred_df = pd.DataFrame(y_test_pred, index=X_test.index, columns=['Popularity'])
-
-
-# In[ ]:
-
-
-# # Guardar predicciones en formato exigido en la competencia de kaggle
-# y_test_pred_df.to_csv('test_submission_file.csv', index_label='ID')
-# y_test_pred_df.head()
 
