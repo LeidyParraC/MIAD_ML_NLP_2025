@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[98]:
+# In[121]:
 
 
 import numpy as np
 import pandas as pd
-import seaborn as sns
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import cross_val_score, train_test_split
@@ -14,20 +13,20 @@ from sklearn.linear_model import LinearRegression
 import joblib
 
 
-# In[99]:
+# In[122]:
 
 
 dataTrain = pd.read_csv('dataTrain_Spotify.csv')
 dataTest = pd.read_csv('dataTest_Spotify.csv')
 
 
-# In[100]:
+# In[123]:
 
 
 dataTrain.head()
 
 
-# In[101]:
+# In[124]:
 
 
 dataTrain.describe()
@@ -36,7 +35,7 @@ dataTrain.describe()
 # # Prepocesamiento de datos de entrenamiento con .fit_transform() y de validación con .transform()
 # 
 
-# In[102]:
+# In[125]:
 
 
 #variable mode en train
@@ -47,7 +46,7 @@ dataTrain.drop(['mode'], axis=1, inplace=True)
 dataTrain = dataTrain.join(pd.DataFrame(data_mode, columns=['menor', 'mayor']))
 
 
-# In[103]:
+# In[126]:
 
 
 #variable mode en test
@@ -57,7 +56,7 @@ dataTest.drop(['mode'], axis=1, inplace=True)
 dataTest = dataTest.join(pd.DataFrame(datat_mode, columns=['menor', 'mayor']))
 
 
-# In[104]:
+# In[127]:
 
 
 #variable time_signature en train
@@ -68,7 +67,7 @@ dataTrain.drop(['time_signature'], axis=1, inplace=True)
 dataTrain = dataTrain.join(pd.DataFrame(data_tsig, columns=indice_time))
 
 
-# In[105]:
+# In[128]:
 
 
 #variable time_signature en test
@@ -79,7 +78,7 @@ dataTest.drop(['time_signature'], axis=1, inplace=True)
 dataTest = dataTest.join(pd.DataFrame(datat_tsig, columns=indice_time))
 
 
-# In[106]:
+# In[129]:
 
 
 #variable key en train
@@ -90,7 +89,7 @@ dataTrain.drop(['key'], axis=1, inplace=True)
 dataTrain = dataTrain.join(pd.DataFrame(data_key, columns=indice_key))
 
 
-# In[107]:
+# In[130]:
 
 
 #variable key en test
@@ -101,19 +100,19 @@ dataTest.drop(['key'], axis=1, inplace=True)
 dataTest = dataTest.join(pd.DataFrame(datat_key, columns=indice_key))
 
 
-# In[108]:
+# In[131]:
 
 
 dataTrain.head()
 
 
-# In[109]:
+# In[132]:
 
 
 dataTest.head()
 
 
-# In[110]:
+# In[133]:
 
 
 # Excluir columnas no numéricas restantes
@@ -122,19 +121,19 @@ dataTrain.drop(non_numeric_columns, axis=1, inplace=True)
 dataTest.drop(non_numeric_columns, axis=1, inplace=True)
 
 
-# In[111]:
+# In[134]:
 
 
 dataTrain.head()
 
 
-# In[112]:
+# In[135]:
 
 
 dataTest.head()
 
 
-# In[113]:
+# In[136]:
 
 
 # Dividir los datos en variables predictoras (X) y variable objetivo (y) para el conjunto de entrenamiento
@@ -143,7 +142,7 @@ y_train = dataTrain['popularity']
 X_test = dataTest
 
 
-# In[114]:
+# In[137]:
 
 
 # Crear y entrenar el modelo de regresión lineal
@@ -162,14 +161,14 @@ print(f"El error cuadrático medio (MSE) es: {mse}")
 print(f"La raíz del error cuadrático medio (RMSE) es: {rmse}")
 
 
-# In[115]:
+# In[138]:
 
 
 # Exportar modelo a archivo binario .pkl
 joblib.dump(model, 'popularidadrl.pkl', compress=3)
 
 
-# In[116]:
+# In[139]:
 
 
 # Importación librerías
@@ -177,7 +176,7 @@ from flask import Flask
 from flask_restx import Api, Resource, fields
 
 
-# In[117]:
+# In[ ]:
 
 
 from flask import Flask, request, render_template_string
